@@ -1,0 +1,17 @@
+{
+  "name": "socket-chat",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "A simple chat app",
+  "repository": "https://github.com/adambarreiro/socket-chat",
+  "author": "adambarreiro",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.7.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

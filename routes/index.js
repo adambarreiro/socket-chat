@@ -15,17 +15,16 @@ var path = require('path');
 var index = express.Router();
 
 module.exports = function(app) {
-
   index.get('/', function(request, response) {
     response.redirect('/index.html');
   });
 
   index.post('/user', function(request, response) {
-    if (request.body.name === undefined) {
+    if (request.body.name === undefined || request.body.name === 'admin') {
       response.redirect('/');
     } else {
       var name = request.body.name;
-      var page = fs.readFileSync(__dirname + "/../public/user.html").toString();
+      var page = fs.readFileSync(path.join(__dirname,"..","public","user.html")).toString();
       var rendered = mustache.render(page, {username: name});
       response.send(rendered);
     }

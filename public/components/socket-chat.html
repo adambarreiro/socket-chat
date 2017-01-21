@@ -1,13 +1,13 @@
+<link rel="import" href="/bower_components/polymer/polymer.html"></link>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-<link rel="import" href="https://polygit2.appspot.com/components/polymer/polymer.html">
-
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <dom-module id="socket-chat">
   <template>
     <link rel="stylesheet" href="socket-chat.css">
-    <ul id="messages"></ul>
-     <form action="">
-       <input id="m" autocomplete="off" /><button>Send</button>
-     </form>
+    <ul id="conversation"></ul>
+    <input id="message" autocomplete="off" />
+    <span id="users_text" hidden="true">Send to:</span> <select id="users" hidden="true"></select>
+    <button id="send">Send</button>
   </template>
   <script>
   Polymer({
@@ -17,17 +17,53 @@
       admin: Boolean
     },
     ready: function() {
-      alert("a");
-      /*var socket = io();
-      alert("Chat loaded: " +this.admin ? 'admin' : this.user);
-      $('form').submit(function(){
-        socket.emit('chat-'+this.admin ? 'admin' : this.user, $('#m').val());
-        $('#m').val('');
-        return false;
+      var socket = io();
+      var user = (this.admin ? 'admin' : this.user);
+
+      // Initialization
+      if (user === 'admin') {
+        socket.on('admin-started', function() {
+          $('#users_text').show();
+          $('#users').show();
+          // Sending
+          $('#send').click(function() {
+            socket.emit('chat', {
+              to: $('#users').val(),
+              text: $('#message').val()
+            });
+            $('#message').val('');
+          });
+        });
+        socket.emit('admin-start');
+      } else {
+        socket.on('user-started', function() {
+          // Sending
+          $('#send').click(function() {
+            socket.emit('chat', {
+              from: user,
+              text: $('#message').val()
+            });
+            $('#message').val('');
+          });
+        });
+        socket.emit('user-start', {user: user});
+      }
+
+      // Receiving
+      socket.on('chat', function(message) {
+        var from;
+        if (user === 'admin') {
+          from = message.from;
+          var found = $("#users option[value='"+from+"']").text()
+          if (found === undefined || found === "") {
+            $('#users').append('<option value="'+from+'">'+from+'</option>')
+          }
+        } else {
+          from = message.to;
+        }
+        $('#conversation').append($('<li>').text("["+new Date()+"] "+from +" said:" + message.text));
       });
-      socket.on('chat-'+this.admin ? 'admin' : this.user, function(msg) {
-        $('#messages').append($('<li>').text(msg));
-      });*/
+
     }
   });
   </script>

@@ -1,0 +1,23 @@
+{
+  "name": "socket-chat",
+  "homepage": "https://github.com/adambarreiro/socket-chat",
+  "authors": [
+    "Adam Barreiro <adambarreiro@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "polymer": "^1.7.1",
+    "socket.io": "^1.7.2"
+  }
+}

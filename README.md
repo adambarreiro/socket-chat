@@ -26,11 +26,25 @@ All the chats start in a new tab.
 
 * Install the application with NPM:
 
-`npm install`
+```
+cd socket-chat
+npm install
+```
+
+* Install the public dependencies with Bower:
+
+```
+npm install -g bower
+cd socket-chat/public
+bower install
+```
 
 * Launch the Node server:
 
-`npm start`
+```
+cd socket-chat
+npm start
+```
 
 ## Tech stack
 
@@ -41,4 +55,5 @@ All the chats start in a new tab.
 * **Mustache**: A JavaScript framework that allows to build text/HTML templates, substituting parameters between curl braces {{}} with a JSON data.
 
 ## TODO
-* For demonstration purposes, CSRF protection has been omitted.
+* The app is completely insecure, so... :)
+* Proper user/admin management (one user per chat, login, ...).

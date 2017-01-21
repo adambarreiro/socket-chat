@@ -22,7 +22,7 @@ var chat = require('./chat/chat');
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname,'public')));
-app.use(express.static('/bower_components', path.join(__dirname,'bower_components')));
+app.use('/bower_components', express.static(path.join(__dirname,'bower_components')));
 router(app);
 var users = [];
 var admin_id;

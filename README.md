@@ -24,19 +24,11 @@ All the chats start in a new tab.
 
 `https://nodejs.org/en/download/`
 
-* Install the application with NPM:
+* Install the application with NPM. This will download Node dependencies and Bower dependencies:
 
 ```
 cd socket-chat
 npm install
-```
-
-* Install the public dependencies with Bower:
-
-```
-npm install -g bower
-cd socket-chat/public
-bower install
 ```
 
 * Launch the Node server:

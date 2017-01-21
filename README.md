@@ -3,9 +3,19 @@
 This challenge consists of a chat component in a responsive web.
 
 ## Try it
+First, go to:
 
+`https://abc-socket-chat.herokuapp.com`
 
-## Local usage
+You will see a very simple landing page with two options:
+
+* The first one allows you to set an username to start a chat like you were a customer. All the messages you send will go to the administrator chat.
+
+* The second one starts the administrator chat, to see all the customers messages.
+
+All the chats start in a new tab.
+
+## Local installation
 * Download the repository in any folder of your choice with Git:
 
 `git clone https://github.com/adambarreiro/socket-chat.git`

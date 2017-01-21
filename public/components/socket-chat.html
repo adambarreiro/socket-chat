@@ -31,6 +31,7 @@
               to: $('#users').val(),
               text: $('#message').val()
             });
+            $('#conversation').append($('<li>').text("["+new Date()+"] "+user+" said: " + $('#message').val()));
             $('#message').val('');
           });
         });
@@ -43,6 +44,7 @@
               from: user,
               text: $('#message').val()
             });
+            $('#conversation').append($('<li>').text("["+new Date()+"] "+user+" said: " + $('#message').val()));
             $('#message').val('');
           });
         });
@@ -59,9 +61,20 @@
             $('#users').append('<option value="'+from+'">'+from+'</option>')
           }
         } else {
-          from = message.to;
+          from = 'Customer support - ADMIN';
         }
-        $('#conversation').append($('<li>').text("["+new Date()+"] "+from +" said:" + message.text));
+        $('#conversation').append($('<li>').text("["+new Date()+"] "+from +" said: " + message.text));
+      });
+
+      socket.on('chat-error', function(message) {
+        $('#conversation').append($('<li>').text("["+new Date()+"] "+ message.error));
+      });
+
+      socket.on('user-disconnect', function(message) {
+        if (user === 'admin') {
+            $('#users').find('option[value="'+message.user+'"]').remove();
+            $('#conversation').append($('<li>').text("["+new Date()+"] "+ message.user + " DISCONNECTED"));
+        }
       });
 
     }

@@ -2,6 +2,8 @@
 ## Description
 This challenge consists of a chat component in a responsive web.
 
+The demonstration app allows to login as an user or an administrator. The administrator must be unique, and there can be any amount of different users. All the text the user writes in the chat will go to the administrator, and the administrator must choose in her chat window whom is going to send the answer.
+
 ## Try it
 First, go to:
 
@@ -49,3 +51,4 @@ npm start
 ## TODO
 * The app is completely insecure, so... :)
 * Proper user/admin management (one user per chat, login, ...).
+* Detect in the admin chat when a user disconnects.

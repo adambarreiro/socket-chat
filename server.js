@@ -48,8 +48,14 @@ io.on('connection', function(socket) {
       console.log('Message to ' + message.to + '('+users[message.to]+') from ADMIN('+admin_id+')')
       io.to(users[message.to]).emit('chat', message);
     } else {
-      console.log('Message to ADMIN('+admin_id+') from '+ message.from + '('+users[message.from]+')');
-      io.to(admin_id).emit('chat', message);
+      if (admin_id === undefined) {
+        console.log('Message to ADMIN('+admin_id+') from '+ message.from + '('+users[message.from]+')');
+        io.to(socket.id).emit('chat-error', {error: 'No ADMIN connected'});
+      } else {
+        console.log('Message to ADMIN('+admin_id+') from '+ message.from + '('+users[message.from]+')');
+        io.to(admin_id).emit('chat', message);
+      }
+
     }
   })
 
@@ -65,6 +71,7 @@ io.on('connection', function(socket) {
         }
       }
       console.log(user + ' with ID='+socket.id+' disconnected!');
+      io.to(admin_id).emit('user-disconnect', {user: user});
     }
   });
 });

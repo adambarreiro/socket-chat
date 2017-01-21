@@ -9,19 +9,31 @@
  */
 
 var express = require('express');
+var mustache = require("mustache");
+var fs = require("fs");
 var path = require('path');
 var index = express.Router();
 
 module.exports = function(app) {
 
-  index.get('/index.html', function(request, response, next) {
-    response.sendFile(path.join(__dirname, '../web', 'index.html'));
-  });
-  index.get('/chat.html', function(request, response, next) {
-    response.sendFile(path.join(__dirname, '../components/chat', 'chat.html'));
-  });
-  index.get('/', function(request, response, next) {
+  index.get('/', function(request, response) {
     response.redirect('/index.html');
   });
+
+  index.post('/user', function(request, response) {
+    if (request.body.name === undefined) {
+      response.redirect('/');
+    } else {
+      var name = request.body.name;
+      var page = fs.readFileSync(__dirname + "/../public/user.html").toString();
+      var rendered = mustache.render(page, {username: name});
+      response.send(rendered);
+    }
+  });
+
+  index.post('/admin', function(request, response) {
+    response.redirect('/admin.html');
+  });
+
   app.use('/', index);
 };

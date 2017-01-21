@@ -13,20 +13,22 @@ var express = require('express');
 var app = express();
 var logger = require('morgan');
 var path = require('path');
+var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var router = require('./routes/index');
 var chat = require('./chat/chat');
 
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, '../web')));
-app.use(express.static(path.join(__dirname, '../components')));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
 router(app);
 io.on('connection', function(socket) {
- socket.on('chat message', function(msg) {
-   io.emit('chat message', msg);
+ socket.on('chat-Pepito', function(msg) {
+   io.emit('chat-admin', msg);
  });
 });
+
 
 http.listen(8080, function(){
   console.log('listening on *:8080');

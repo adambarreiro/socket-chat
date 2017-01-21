@@ -1,0 +1,34 @@
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<link rel="import" href="https://polygit2.appspot.com/components/polymer/polymer.html">
+
+<dom-module id="socket-chat">
+  <template>
+    <link rel="stylesheet" href="socket-chat.css">
+    <ul id="messages"></ul>
+     <form action="">
+       <input id="m" autocomplete="off" /><button>Send</button>
+     </form>
+  </template>
+  <script>
+  Polymer({
+    is: 'socket-chat',
+    properties: {
+      user: String,
+      admin: Boolean
+    },
+    ready: function() {
+      alert("a");
+      /*var socket = io();
+      alert("Chat loaded: " +this.admin ? 'admin' : this.user);
+      $('form').submit(function(){
+        socket.emit('chat-'+this.admin ? 'admin' : this.user, $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat-'+this.admin ? 'admin' : this.user, function(msg) {
+        $('#messages').append($('<li>').text(msg));
+      });*/
+    }
+  });
+  </script>
+</dom-module>

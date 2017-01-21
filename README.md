@@ -2,7 +2,10 @@
 ## Description
 This challenge consists of a chat component in a responsive web.
 
-## Usage
+## Try it
+
+
+## Local usage
 * Download the repository in any folder of your choice with Git:
 
 `git clone https://github.com/adambarreiro/socket-chat.git`
@@ -25,3 +28,7 @@ This challenge consists of a chat component in a responsive web.
 * **Express.js**: A Node.js module for building web services quickly and fast, with easy and modular routing, support of powerful middleware (body parsing, CSRF protection, JWT authentication, cookies...).
 * **Socket.IO**: A JavaScript framework built on top of WebSockets technology, allows to open a persistent & direct channel from the frontend to the backend, in which information flows until it's closed. All of this using HTTP protocol.
 * **Polymer**: A JavaScript framework that allows to build HTML components, in order to reuse them all along the frontend application.
+* **Mustache**: A JavaScript framework that allows to build text/HTML templates, substituting parameters between curl braces {{}} with a JSON data.
+
+## TODO
+* For demonstration purposes, CSRF protection has been ommited.

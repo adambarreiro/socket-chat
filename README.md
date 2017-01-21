@@ -5,7 +5,7 @@ This challenge consists of a chat component in a responsive web.
 ## Try it
 First, go to:
 
-`https://abc-socket-chat.herokuapp.com`
+https://abc-socket-chat.herokuapp.com
 
 You will see a very simple landing page with two options:
 
@@ -41,4 +41,4 @@ All the chats start in a new tab.
 * **Mustache**: A JavaScript framework that allows to build text/HTML templates, substituting parameters between curl braces {{}} with a JSON data.
 
 ## TODO
-* For demonstration purposes, CSRF protection has been ommited.
+* For demonstration purposes, CSRF protection has been omitted.

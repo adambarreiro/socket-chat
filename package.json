@@ -15,7 +15,7 @@
     "socket.io": "^1.7.2"
   },
   "scripts": {
-    "postinstall": "cd public && bower install",
-    "start": "node ./server.js"
+    "postinstall": "bower install",
+    "start": "node server.js"
   }
 }

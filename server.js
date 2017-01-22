@@ -5,8 +5,7 @@
  * https://github.com/adambarreiro/socket-chat
  * -------------------------------------------------------------------------------------
  *
- * Server core module. Exports the application for the invocation from
- * bin/www.js and initializes all the middleware: Logging, routing, chat...
+ * Server core module. Initializes all the middleware and modules.
  */
 
 var express = require('express');

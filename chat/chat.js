@@ -7,8 +7,6 @@
  *
  * Chat module.
  */
-
-var logger = require('morgan');
 module.exports = function(io) {
   var users = [];
   var admin

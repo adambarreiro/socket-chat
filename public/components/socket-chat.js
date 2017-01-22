@@ -19,7 +19,9 @@ var SocketChat = (function($) {
   const userStartRequest = 'user-start';
   const chatErrorEvent = 'chat-error';
   const adminStartErrorEvent = 'admin-start-error';
+  const userStartErrorEvent = 'user-start-error';
   const userDisconnectEvent = 'user-disconnect';
+  const adminDisconnectEvent = 'admin-disconnect';
 
   // Private functions
   function getSelectedUser() {
@@ -176,12 +178,23 @@ var SocketChat = (function($) {
         $(submit).remove();
       });
     },
+    onUserStartError: function(socket, user) {
+      socket.on(userStartErrorEvent, function(message) {
+        writeMessage(null, message.error, 'error');
+        $(submit).remove();
+      });
+    },
     onUserDisconnect: function(socket, user) {
       socket.on(userDisconnectEvent, function(message) {
         if (isAdmin(user)) {
             removeUserFromChatList(message.user);
             writeMessage(null, message.user + ' has disconnected!', 'info');
         }
+      });
+    },
+    onAdminDisconnect: function(socket, user) {
+      socket.on(adminDisconnectEvent, function(message) {
+        writeMessage(null, 'Customer support is disconnected!', 'info');
       });
     },
   }

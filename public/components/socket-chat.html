@@ -34,7 +34,9 @@
       SocketChat.onChat(socket, user);
       SocketChat.onChatError(socket, user);
       SocketChat.onAdminStartError(socket, user);
+      SocketChat.onUserStartError(socket, user);
       SocketChat.onUserDisconnect(socket, user);
+      SocketChat.onAdminDisconnect(socket, user);
     }
   });
   </script>

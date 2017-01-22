@@ -76,21 +76,24 @@ li {
   clear:both;
   height: 1px;
   width: 100%;
-  padding: 5px;
+  padding: 4px;
 }
 
 .bottom {
-  float: right;
+  height: 50px;
 }
 
 #message {
+  float: right;
   font-size: 20px;
   border: 0px;
-  width: 100%;
+  width: 55%;
   padding: 10px 20px 10px 20px;
 }
 
 #send {
+  width: 15%;
+  float: right;
   background: rgb(78, 152, 194);
   border: 0px;
   font-family: Arial;

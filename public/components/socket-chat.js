@@ -54,6 +54,7 @@ var SocketChat = (function($) {
     } else {
       $(conversationBox).append($('<li><span class="date"><b>'+Utils.getTime()+' '+user+": </b></span>" + text + '</li>'));
     }
+    $(chatBox).scrollTop($(chatBox)[0].scrollHeight);
   }
 
   function isAdmin(user) {

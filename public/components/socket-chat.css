@@ -47,7 +47,7 @@ li {
 
 /* RIGHT SECTION */
 .right {
-  min-height: 400px;
+  height: 400px;
   overflow: scroll;
   background-color: white;
   width: 70%;

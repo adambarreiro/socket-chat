@@ -7,12 +7,23 @@
     <link rel="import" href="/components/socket-chat.html">
   </head>
   <body>
-    <header>socket-chat</header>
+    <header>Super amazing shop</header>
     <nav>
       <ul class="nav">
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">You cart</a></li>
         <li class="login">Welcome again, {{username}}!</li>
       </ul>
     </nav>
+    <section id="readme">
+      <h1>
+        Customer support chat
+      </h1>
+      <p>
+        If you need help, contact with our Customer Support with this chat.
+      </p>
+    </section>
     <section>
       <socket-chat user="{{username}}"></socket-chat>
     </section>

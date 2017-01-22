@@ -47,7 +47,7 @@ li {
 
 /* RIGHT SECTION */
 .right {
-  min-height: 500px;
+  min-height: 400px;
   overflow: scroll;
   background-color: white;
   width: 70%;
@@ -85,7 +85,9 @@ li {
 
 #message {
   font-size: 20px;
-  padding: 20px 20px 20px 20px;
+  border: 0px;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
 }
 
 #send {

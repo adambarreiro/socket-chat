@@ -2,6 +2,7 @@ var SocketChat = (function($) {
 
   // Elements
   const usersBox = '.left';
+  const chatBox = '.right';
   const usersList = '#users';
   const selectedUser = '#selected';
   const messageInput = '#message';
@@ -61,6 +62,11 @@ var SocketChat = (function($) {
     $(usersBox).show();
   }
 
+  function hideUsersBox() {
+    $(usersBox).remove();
+    $(chatBox).css({'width': '100%'});
+  }
+
   function addUserToChatList(user) {
     var selectDefault = false;
     if ($(usersList).children().length === 0) {
@@ -86,8 +92,8 @@ var SocketChat = (function($) {
   }
 
   function onAdminStarted(socket, user) {
+    showUsersBox();
     socket.on(adminStartedEvent, function() {
-      showUsersBox();
       $(sendButton).click(function() {
         if (isChatListEmpty()) {
           writeMessage(null, 'There\'s no connected users', 'error');
@@ -108,6 +114,7 @@ var SocketChat = (function($) {
   }
 
   function onUserStarted(socket, user) {
+    hideUsersBox();
     socket.on(userStartedEvent, function() {
       $(sendButton).click(function() {
         if (!isMessageInputEmpty()) {
@@ -119,6 +126,9 @@ var SocketChat = (function($) {
           writeMessage(message.from, message.text);
           clearMessageInput();
         }
+      });
+      socket.on(adminStartedEvent, function() {
+        writeMessage(null, 'Customer support is online!', 'info');
       });
     });
     socket.emit(userStartRequest, {user: user});

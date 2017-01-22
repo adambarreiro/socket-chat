@@ -52,6 +52,5 @@ npm start
 * The app is completely insecure, so... :)
 * Proper user/admin management (one user per chat, login, ...).
 * CSS generating with a tool like Sass or Less.
-* Broadcast ADMIN connection.
 * Chat tabs instead of one chat window.
 * Two or more ADMINs trying to connect cause unexpected behaviour.

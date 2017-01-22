@@ -10,18 +10,21 @@
 
 var logger = require('morgan');
 module.exports = function(io) {
-
   var users = [];
-  var admin_id;
+  var admin
 
   io.on('connection', function(socket) {
     socket.on('admin-start', function() {
-      if (admin_id === undefined) {
-        admin_id = socket.id;
-        console.log("ADMIN is connected with ID=" + admin_id);
-        io.to(admin_id).emit('admin-started');
-        socket.broadcast.emit('admin-started');
+      if (admin === undefined) {
+        admin = socket;
+        console.log("ADMIN is connected with ID=" + admin.id);
+      } else {
+        io.to(admin.id).emit('admin-start-error', {error: 'Logged out! Someone has logged in as ADMIN!'});
+        admin.disconnect();
+        admin = socket;
       }
+      io.to(admin.id).emit('admin-started');
+      socket.broadcast.emit('admin-started');
     });
 
     socket.on('user-start', function(message) {
@@ -33,24 +36,24 @@ module.exports = function(io) {
     });
 
     socket.on('chat', function(message) {
-      if (socket.id === admin_id) {
-        console.log('Message to ' + message.to + '('+users[message.to]+') from ADMIN('+admin_id+')')
+      if (socket.id === admin.id) {
+        console.log('Message to ' + message.to + '('+users[message.to]+') from ADMIN('+admin.id+')')
         io.to(users[message.to]).emit('chat', message);
       } else {
-        if (admin_id === undefined) {
-          console.log('Message to ADMIN('+admin_id+') from '+ message.from + '('+users[message.from]+')');
+        if (admin === undefined) {
+          console.log('Message to ADMIN('+admin.id+') from '+ message.from + '('+users[message.from]+')');
           io.to(socket.id).emit('chat-error', {error: 'No ADMIN connected'});
         } else {
-          console.log('Message to ADMIN('+admin_id+') from '+ message.from + '('+users[message.from]+')');
-          io.to(admin_id).emit('chat', message);
+          console.log('Message to ADMIN('+admin.id+') from '+ message.from + '('+users[message.from]+')');
+          io.to(admin.id).emit('chat', message);
         }
 
       }
     })
 
     socket.on('disconnect', function() {
-      if (socket.id === admin_id) {
-        admin_id = undefined;
+      if (socket.id === admin.id) {
+        admin = undefined;
         console.log('ADMIN with ID='+socket.id+' disconnected!');
       } else {
         for (var user in users) {
@@ -60,7 +63,7 @@ module.exports = function(io) {
           }
         }
         console.log(user + ' with ID='+socket.id+' disconnected!');
-        io.to(admin_id).emit('user-disconnect', {user: user});
+        io.to(admin.id).emit('user-disconnect', {user: user});
       }
     });
   });

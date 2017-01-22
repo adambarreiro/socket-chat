@@ -18,6 +18,7 @@ var SocketChat = (function($) {
   const adminStartRequest = 'admin-start';
   const userStartRequest = 'user-start';
   const chatErrorEvent = 'chat-error';
+  const adminStartErrorEvent = 'admin-start-error';
   const userDisconnectEvent = 'user-disconnect';
 
   // Private functions
@@ -166,6 +167,12 @@ var SocketChat = (function($) {
     onChatError: function(socket, user) {
       socket.on(chatErrorEvent, function(message) {
         writeMessage(null, message.error, 'error');
+      });
+    },
+    onAdminStartError: function(socket, user) {
+      socket.on(adminStartErrorEvent, function(message) {
+        writeMessage(null, message.error, 'error');
+        $(submit).remove();
       });
     },
     onUserDisconnect: function(socket, user) {

@@ -8,6 +8,7 @@ var SocketChat = (function($) {
   const messageInput = '#message';
   const admin = 'admin';
   const sendButton = '#send';
+  const submit = '.bottom';
   const conversationBox = '#conversation';
 
   // Socket.IO Events
@@ -65,6 +66,7 @@ var SocketChat = (function($) {
   function hideUsersBox() {
     $(usersBox).remove();
     $(chatBox).css({'width': '100%'});
+    $(messageInput).css({'width': '85%'});
   }
 
   function addUserToChatList(user) {
@@ -84,7 +86,6 @@ var SocketChat = (function($) {
         $(newElement).attr('id','selected');
       }
     }
-
   }
 
   function removeUserFromChatList(user) {
@@ -94,7 +95,8 @@ var SocketChat = (function($) {
   function onAdminStarted(socket, user) {
     showUsersBox();
     socket.on(adminStartedEvent, function() {
-      $(sendButton).click(function() {
+      $(submit).submit(function(e) {
+        e.preventDefault();
         if (isChatListEmpty()) {
           writeMessage(null, 'There\'s no connected users', 'error');
         } else if (!isSomebodySelected()) {
@@ -108,6 +110,7 @@ var SocketChat = (function($) {
           writeMessage('ADMIN answering to ' + message.to, message.text);
           clearMessageInput();
         }
+        return false;
       });
     });
     socket.emit(adminStartRequest);
@@ -116,7 +119,8 @@ var SocketChat = (function($) {
   function onUserStarted(socket, user) {
     hideUsersBox();
     socket.on(userStartedEvent, function() {
-      $(sendButton).click(function() {
+      $(submit).submit(function(e) {
+        e.preventDefault();
         if (!isMessageInputEmpty()) {
           var message = {
             from: user,
@@ -126,6 +130,7 @@ var SocketChat = (function($) {
           writeMessage(message.from, message.text);
           clearMessageInput();
         }
+        return false;
       });
       socket.on(adminStartedEvent, function() {
         writeMessage(null, 'Customer support is online!', 'info');

@@ -2,16 +2,31 @@
 <html>
   <head>
     <title>Chat demo</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <header>socket-chat</header>
-    <form action="/user" target="_blank" method="POST">
+    <section id="readme">
+      <h1>
+        What's this?
+      </h1>
+      <p>
+        This is a demonstration webpage for testing a chat component made with Polymer and Socket.IO.
+        There are two types of users of this chat, <b>Normal users</b> and the <b>Administrator</b>.
+        <ul>
+          <li>The Normal user is someone who enters in an e-commerce and needs some kind of support, so she/he clicks the "Customer support" chat button and the chat starts.</li>
+          <li>The Administrator is the person who is in the Customer Support's department, helping its customers to solve their problems.</li>
+        </ul>
+        These two boxes mock a login process. You can either start the chat as a Normal user identified by some username, or start the chat as the Administrator. All the Normal users write directly to the Administrator, but the Administrator can choose which user she/he's talking to.
+      </p>
+    </section>
+    <form class="enter" action="/user" target="_blank" method="POST">
       <p>This will start a chat in a new window</p>
       <input name="name" type="text" placeholder="Enter your username"/>
       <input type="submit" value="Start chat with administrator"/>
     </form>
-    <form action="/admin" target="_blank" method="POST">
+    <form class="enter" action="/admin" target="_blank" method="POST">
       <p>This will start a chat in a new window</p>
       <input type="submit" value="I'm the administrator"/>
     </form>

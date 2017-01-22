@@ -2,13 +2,19 @@
 <html>
   <head>
     <title>socket-chat: {{username}} is chatting with admin</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/styles.css">
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="/components/socket-chat.html">
   </head>
   <body>
     <header>socket-chat</header>
-    <p>User: {{username}}</p>
-    <socket-chat user="{{username}}"></socket-chat>
+    <nav>
+      <ul class="nav">
+        <li class="login">Welcome again, {{username}}!</li>
+      </ul>
+    </nav>
+    <section>
+      <socket-chat user="{{username}}"></socket-chat>
+    </section>
   </body>
 </html>

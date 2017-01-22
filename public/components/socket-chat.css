@@ -1,8 +1,104 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font: 13px Helvetica, Arial; }
-form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-#messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
-#messages li:nth-child(odd) { background: #eee; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:
+  border-box;
+}
+
+body {
+  font: 1em Helvetica, Arial;
+}
+
+li {
+  list-style: none;
+}
+
+#chat {
+  padding: 10px;
+  background-color: rgb(227, 227, 227);
+}
+
+/* LEFT SECTION */
+
+.left {
+  height: 100%;
+  width: 30%;
+  float: left;
+  text-align: center;
+}
+
+#users {
+  padding: 10px;
+  width: 100%;
+}
+
+#users li {
+  padding: 5px;
+}
+
+#users li#selected {
+  background-color: black;
+  color: white;
+}
+
+#users li:hover {
+  background-color: rgb(98, 172, 214);
+}
+
+/* RIGHT SECTION */
+.right {
+  min-height: 500px;
+  overflow: scroll;
+  background-color: white;
+  width: 70%;
+  float: right;
+}
+
+#conversation {
+  padding: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.info {
+  color: blue;
+}
+
+.date {
+  color: grey;
+}
+
+/* BOTTOM SECTION */
+
+.separator {
+  clear:both;
+  height: 1px;
+  width: 100%;
+  padding: 5px;
+}
+
+.bottom {
+  float: right;
+}
+
+#message {
+  font-size: 20px;
+  padding: 20px 20px 20px 20px;
+}
+
+#send {
+  background: rgb(78, 152, 194);
+  border: 0px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#send:hover {
+  background: rgb(98, 172, 214);
+  text-decoration: none;
+}

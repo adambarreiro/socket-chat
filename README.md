@@ -53,4 +53,3 @@ npm start
 * Proper user/admin management (one user per chat, login, ...).
 * CSS generating with a tool like Sass or Less.
 * Chat tabs instead of one chat window.
-* Two or more ADMINs trying to connect cause unexpected behaviour.
